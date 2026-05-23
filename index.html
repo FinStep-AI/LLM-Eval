@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Trading Agent Frontend</title>
+  <style>
+    :root {
+      --bg: #07111f;
+      --panel: #0f172a;
+      --line: rgba(148,163,184,.18);
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --accent: #60a5fa;
+      --accent2: #34d399;
+      --radius: 16px;
+      --shadow: 0 20px 45px rgba(0,0,0,.25);
+      --sans: Inter, PingFang SC, Microsoft YaHei, sans-serif;
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; min-height: 100vh; background: linear-gradient(180deg, #07111f, #0f172a); color: var(--text); font-family: var(--sans); padding-top: 0; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 28px 18px 40px; }
+    .hero, .card { background: rgba(15,23,42,.9); border: 1px solid var(--line); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .hero { padding: 24px; margin-bottom: 18px; }
+    .title { font-size: 28px; font-weight: 800; }
+    .subtitle { margin-top: 8px; color: var(--muted); line-height: 1.6; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px; }
+    .card { padding: 18px; transition: transform .15s ease, border-color .15s ease; }
+    .card:hover { transform: translateY(-2px); border-color: rgba(96,165,250,.55); }
+    .card h2 { margin: 0 0 10px; font-size: 18px; }
+    .card p { margin: 0; color: var(--muted); line-height: 1.6; }
+    .meta { margin-top: 14px; font-size: 12px; color: #cbd5e1; font-family: var(--mono); }
+    .actions { margin-top: 16px; display: flex; gap: 10px; flex-wrap: wrap; }
+    a.btn { display: inline-flex; align-items: center; justify-content: center; padding: 10px 14px; border-radius: 10px; border: 1px solid rgba(148,163,184,.22); color: var(--text); text-decoration: none; background: #0b1220; }
+    a.btn.primary { background: linear-gradient(90deg, #2563eb, #10b981); border-color: transparent; }
+    a.btn:hover { filter: brightness(1.05); }
+    .note { margin-top: 18px; color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .tag { display: inline-flex; align-items: center; padding: 3px 8px; border-radius: 999px; border: 1px solid rgba(148,163,184,.18); background: rgba(17,24,39,.8); font-size: 12px; color: #cbd5e1; margin-right: 8px; }
+  
+    
+    .topnav {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+      background: rgba(6, 10, 20, .72);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(148,163,184,.10);
+    }
+    .topnav-inner {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 8px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .topnav-brand {
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(229,231,235,.78);
+    }
+    .topnav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .topnav-link {
+      text-decoration: none;
+      color: rgba(219,228,240,.88);
+      background: rgba(15,23,42,.45);
+      border: 1px solid rgba(148,163,184,.10);
+      border-radius: 999px;
+      padding: 6px 11px;
+      font-size: 12px;
+      line-height: 1;
+      transition: background .15s ease, border-color .15s ease, transform .15s ease, color .15s ease;
+    }
+    .topnav-link:hover {
+      border-color: rgba(96,165,250,.28);
+      background: rgba(30,41,59,.62);
+      transform: translateY(-1px);
+    }
+    .topnav-link.active {
+      color: #fff;
+      background: linear-gradient(90deg, rgba(37,99,235,.30), rgba(16,185,129,.22));
+      border-color: rgba(96,165,250,.30);
+      box-shadow: 0 0 0 1px rgba(96,165,250,.10) inset;
+    }
+</style>
+</head>
+<body>
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="topnav-brand">Trading Agent Frontend</div>
+    <div class="topnav-links">
+      <a href="./index.html" class="topnav-link active">Home</a>
+      <a href="./all_0522_eval_dashboard.html" class="topnav-link">all_0522 Eval</a>
+      <a href="./finresearchbench_dashboard.html" class="topnav-link">FinResearchBench</a>
+    </div>
+  </div>
+</nav>
+
+  <div class="wrap">
+    <section class="hero">
+      <div class="title">Trading Agent Frontend</div>
+      <div class="subtitle">统一入口页，集中查看两个评测页面：一个是 <span class="mono">all_0522</span> 的完整评测 dashboard，另一个是 <span class="mono">FinResearchBench</span> 的质量/规则总览。</div>
+    </section>
+
+    <div class="grid">
+      <section class="card">
+        <div><span class="tag">Eval Dashboard</span><span class="tag">all_0522</span></div>
+        <h2>OpenClaw Batch Eval · all_0522</h2>
+        <p>查看 4 个子 run 的评测结果、按模型/Agent/任务类型聚合的统计，以及单条样本详情。</p>
+        <div class="meta">file: <span class="mono">frontend/all_0522_eval_dashboard.html</span></div>
+        <div class="actions">
+          <a class="btn primary" href="./all_0522_eval_dashboard.html">打开评测页</a>
+        </div>
+      </section>
+
+      <section class="card">
+        <div><span class="tag">Research Bench</span><span class="tag">FinResearchBench</span></div>
+        <h2>FinResearchBench Dashboard</h2>
+        <p>查看模型 yes-rate 排名、质量分层，以及每个 query 对应的 rubric 明细和 agent 评分。</p>
+        <div class="meta">file: <span class="mono">frontend/finresearchbench_dashboard.html</span></div>
+        <div class="actions">
+          <a class="btn primary" href="./finresearchbench_dashboard.html">打开总览页</a>
+        </div>
+      </section>
+    </div>
+
+    <div class="note">
+      提示：如果你是用本地静态服务器打开这个目录，直接访问 <span class="mono">frontend/index.html</span> 即可。<br/>
+      如果你需要，我也可以再帮你加一个“自动发现 frontend 目录下所有 dashboard”的目录页。
+    </div>
+  </div>
+</body>
+</html>
